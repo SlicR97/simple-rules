@@ -1,2 +1,2 @@
 # simple-rules
-Simple server-side input validation
+Simple input validation

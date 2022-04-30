@@ -1,5 +1,5 @@
 export namespace NotEmpty {
-  export const validator = (x: string | any[]): boolean => {
+  export const rule = (x: string | any[]): boolean => {
     return x.length !== 0;
   };
 
