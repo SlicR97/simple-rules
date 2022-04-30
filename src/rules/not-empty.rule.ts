@@ -17,7 +17,7 @@ export namespace NotEmpty {
       const _errorMessage = options?.errorMessage ?? errorMessage;
       return Maybe.Some(RuleViolation.create(
         _propertyName,
-        formatError(_errorMessage, { propertyName: _propertyName }),
+        formatError(_errorMessage, { propertyName: _propertyName, propertyValue: x }),
         x
       ));
     }

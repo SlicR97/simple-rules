@@ -27,7 +27,7 @@ describe('NotEmpty test suite', () => {
     deepEqual(NotEmpty.validate()('')('x'), { 
       propertyName: 'x',
       errorMessage: 'x must not be empty.',
-      attemptedValue: ''
+      propertyValue: ''
     });
   });
 
@@ -39,7 +39,7 @@ describe('NotEmpty test suite', () => {
     deepEqual(NotEmpty.validate({ propertyName: 'y' })('')('x'), {
       propertyName: 'y',
       errorMessage: 'y must not be empty.',
-      attemptedValue: ''
+      propertyValue: ''
     });
   });
 
@@ -47,15 +47,23 @@ describe('NotEmpty test suite', () => {
     deepEqual(NotEmpty.validate({ errorMessage: 'y' })('')('x'), {
       propertyName: 'x',
       errorMessage: 'y',
-      attemptedValue: ''
+      propertyValue: ''
     });
   });
 
-  it('Using {PropertyName} in my custom error message should return a formatted error message', () => {
+  it('Using {propertyName} in my custom error message should return a formatted error message', () => {
     deepEqual(NotEmpty.validate({ propertyName: 'test', errorMessage: '{propertyName} should not be empty' })('')('x'), {
       propertyName: 'test',
       errorMessage: 'test should not be empty',
-      attemptedValue: ''
+      propertyValue: ''
+    });
+  });
+
+  it('Using {propertyValue} in my custom error message should return a formatted error message', () => {
+    deepEqual(NotEmpty.validate({ errorMessage: 'Expected not empty, found: {propertyValue}' })([])('x'), {
+      propertyName: 'x',
+      errorMessage: 'Expected not empty, found: []',
+      propertyValue: []
     });
   });
 });
