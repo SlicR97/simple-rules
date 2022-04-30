@@ -41,5 +41,13 @@ describe('NotEmpty test suite', () => {
       errorMessage: 'String or array must not be empty.',
       attemptedValue: ''
     });
-  })
+  });
+
+  it('Validate with options should return a custom error message', () => {
+    deepEqual(NotEmpty.validate({ errorMessage: 'y' })('')('x'), {
+      propertyName: 'x',
+      errorMessage: 'y',
+      attemptedValue: ''
+    });
+  });
 });

@@ -1,3 +1,4 @@
 export type RuleOptions = {
-  propertyName: string;
+  propertyName?: string;
+  errorMessage?: string;
 };
