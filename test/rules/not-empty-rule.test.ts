@@ -50,4 +50,12 @@ describe('NotEmpty test suite', () => {
       attemptedValue: ''
     });
   });
+
+  it('Using {PropertyName} in my custom error message should return a formatted error message', () => {
+    deepEqual(NotEmpty.validate({ propertyName: 'test', errorMessage: '{propertyName} should not be empty' })('')('x'), {
+      propertyName: 'test',
+      errorMessage: 'test should not be empty',
+      attemptedValue: ''
+    });
+  });
 });
