@@ -24,7 +24,7 @@ describe('NotEmpty test suite', () => {
   });
 
   it('Validate should return object when empty', () => {
-    deepEqual(NotEmpty.validate('')('x'), { 
+    deepEqual(NotEmpty.validate()('')('x'), { 
       propertyName: 'x',
       errorMessage: 'String or array must not be empty.',
       attemptedValue: ''
@@ -32,6 +32,14 @@ describe('NotEmpty test suite', () => {
   });
 
   it('Validate should return undefined when not empty', () => {
-    equal(NotEmpty.validate(' ')('x'), Maybe.None());
+    equal(NotEmpty.validate()(' ')('x'), Maybe.None());
+  });
+
+  it('Validate with options should return a custom property name', () => {
+    deepEqual(NotEmpty.validate({ propertyName: 'y' })('')('x'), {
+      propertyName: 'y',
+      errorMessage: 'String or array must not be empty.',
+      attemptedValue: ''
+    });
   })
 });

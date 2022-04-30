@@ -1,4 +1,5 @@
 import { Maybe } from "../types/maybe.type";
+import { RuleOptions } from "../types/rule-options.type";
 import { RuleViolation } from "../types/rule-violation.type";
 
 export namespace NotEmpty {
@@ -8,8 +9,8 @@ export namespace NotEmpty {
 
   export const errorMessage = "String or array must not be empty.";
 
-  export const validate = (x: string | any[]) => (propertyName: string) : Maybe<RuleViolation> => {
+  export const validate = (options?: RuleOptions) => (x: string | any[]) => (propertyName: string) : Maybe<RuleViolation> => {
     if (rule(x)) return Maybe.None();
-    else return Maybe.Some(RuleViolation.create(propertyName, errorMessage, x));
+    else return Maybe.Some(RuleViolation.create(options?.propertyName ?? propertyName, errorMessage, x));
   }
 }
