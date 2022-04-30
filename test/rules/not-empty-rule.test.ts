@@ -1,5 +1,6 @@
-import { equal } from 'assert';
+import { deepEqual, equal } from 'assert';
 import { NotEmpty } from '../../src/rules/not-empty.rule';
+import { Maybe } from '../../src/types/maybe.type';
 
 describe('NotEmpty test suite', () => {
   it('Rule should return false on an empty string', () => {
@@ -19,6 +20,18 @@ describe('NotEmpty test suite', () => {
   });
 
   it('ErrorMessage should return specific string', () => {
-    equal('String or array must not be empty.', NotEmpty.errorMessage);
+    equal(NotEmpty.errorMessage, 'String or array must not be empty.');
   });
+
+  it('Validate should return object when empty', () => {
+    deepEqual(NotEmpty.validate('')('x'), { 
+      propertyName: 'x',
+      errorMessage: 'String or array must not be empty.',
+      attemptedValue: ''
+    });
+  });
+
+  it('Validate should return undefined when not empty', () => {
+    equal(NotEmpty.validate(' ')('x'), Maybe.None());
+  })
 });
