@@ -1,0 +1,19 @@
+{
+  "name": "simple-rules",
+  "version": "0.0.1",
+  "description": "Simple input validation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "npx tsc"
+  },
+  "repository": "git@github.com:SlicR97/simple-rules.git",
+  "author": "Nico Loos",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/node": "^17.0.30",
+    "jest": "^28.0.3",
+    "typescript": "^4.6.4"
+  }
+}
