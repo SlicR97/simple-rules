@@ -8,7 +8,7 @@ export namespace NotEmpty {
     return x.length !== 0;
   };
 
-  export const errorMessage = "String or array must not be empty.";
+  export const errorMessage = "{propertyName} must not be empty.";
 
   export const validate = (options?: RuleOptions) => (x: string | any[]) => (propertyName: string) : Maybe<RuleViolation> => {
     if (rule(x)) return Maybe.None();

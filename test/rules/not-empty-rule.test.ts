@@ -20,13 +20,13 @@ describe('NotEmpty test suite', () => {
   });
 
   it('ErrorMessage should return specific string', () => {
-    equal(NotEmpty.errorMessage, 'String or array must not be empty.');
+    equal(NotEmpty.errorMessage, '{propertyName} must not be empty.');
   });
 
   it('Validate should return object when empty', () => {
     deepEqual(NotEmpty.validate()('')('x'), { 
       propertyName: 'x',
-      errorMessage: 'String or array must not be empty.',
+      errorMessage: 'x must not be empty.',
       attemptedValue: ''
     });
   });
@@ -38,7 +38,7 @@ describe('NotEmpty test suite', () => {
   it('Validate with options should return a custom property name', () => {
     deepEqual(NotEmpty.validate({ propertyName: 'y' })('')('x'), {
       propertyName: 'y',
-      errorMessage: 'String or array must not be empty.',
+      errorMessage: 'y must not be empty.',
       attemptedValue: ''
     });
   });
