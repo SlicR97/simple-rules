@@ -6,6 +6,8 @@ export type RuleViolation = {
   propertyValue: Maybe<any>;
 }
 
+export type RuleViolations = RuleViolation[];
+
 export namespace RuleViolation {
   export const create = (propertyName: string, errorMessage: string, propertyValue: Maybe<any> = Maybe.None()): RuleViolation => ({
     propertyName,

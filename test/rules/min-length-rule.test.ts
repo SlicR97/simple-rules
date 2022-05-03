@@ -27,7 +27,7 @@ describe('MinLength test suite', () => {
   });
 
   it('Validate returns a correctly formatted error string', () => {
-    deepEqual(MinLength.validate({ threshold: 6 })('test')('x'), {
+    deepEqual(MinLength.validate({ threshold: 6 })('test', 'x'), {
       propertyName: 'x',
       errorMessage: 'x\'s length must be at least 6.',
       propertyValue: 'test'
