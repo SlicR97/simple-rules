@@ -10,7 +10,7 @@ export namespace NotEmpty {
 
   export const errorMessage = "{propertyName} must not be empty.";
 
-  export const validate = (options?: RuleOptions) => (x: string | any[]) => (propertyName: string) : Maybe<RuleViolation> => {
+  export const validate = (options?: RuleOptions) => (x: string | any[], propertyName: string) : Maybe<RuleViolation> => {
     if (rule(x)) return Maybe.None();
     else {
       const _propertyName = options?.propertyName ?? propertyName;
