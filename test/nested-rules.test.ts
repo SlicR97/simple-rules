@@ -15,8 +15,8 @@ describe('nested rules test suite', () => {
   it('nested rules with a valid object do not return errors', () => {
     deepEqual(rules<TestType>(
       ['nested', rules<NestedType>(
-        ['foo', NotEmpty.validate()],
-        ['bar', NotEmpty.validate()]
+        ['foo', NotEmpty.validate],
+        ['bar', NotEmpty.validate]
       )]
     )({
       nested: {
@@ -29,8 +29,8 @@ describe('nested rules test suite', () => {
   it('nested rules with an invalid object return errors', () => {
     deepEqual(rules<TestType>(
       ['nested', rules<NestedType>(
-        ['foo', NotEmpty.validate()],
-        ['bar', NotEmpty.validate()]
+        ['foo', NotEmpty.validate],
+        ['bar', NotEmpty.validate]
       )]
     )({
       nested: {
@@ -39,18 +39,14 @@ describe('nested rules test suite', () => {
       }
     }), {
       nested: {
-        foo: [
-          {
-            errorMessage: 'foo must not be empty.',
-            propertyValue: ''
-          }
-        ],
-        bar: [
-          {
-            errorMessage: 'bar must not be empty.',
-            propertyValue: ''
-          }
-        ]
+        foo: {
+          errorCodes: [ 'NOT_EMPTY' ],
+          propertyValue: ''
+        },
+        bar: {
+          errorCodes: [ 'NOT_EMPTY' ],
+          propertyValue: ''
+        }
       }
     });
   });

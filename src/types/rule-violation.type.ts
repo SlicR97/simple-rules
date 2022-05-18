@@ -1,15 +1,20 @@
 import { Maybe } from "./maybe.type";
 
 export type RuleViolation = {
-  errorMessage: string;
+  errorCodes: string[];
   propertyValue: Maybe<any>;
+  additionalProperties?: Maybe<Record<string, any>>;
 }
 
-export type RuleViolations = RuleViolation[];
-
 export namespace RuleViolation {
-  export const create = (errorMessage: string, propertyValue: Maybe<any> = Maybe.None()): RuleViolation => ({
-    errorMessage,
-    propertyValue
-  });
+  export const create = (errorCodes: string[], propertyValue: Maybe<any> = Maybe.None(), additionalProperties: Maybe<Record<string, any>> = Maybe.None()): RuleViolation => {
+    if (additionalProperties) return {
+      errorCodes,
+      propertyValue,
+      additionalProperties
+    }; else return {
+      errorCodes,
+      propertyValue
+    }
+  }
 }

@@ -27,9 +27,12 @@ describe('MinLength test suite', () => {
   });
 
   it('Validate returns a correctly formatted error string', () => {
-    deepEqual(MinLength.validate({ threshold: 6 })('test', 'x'), {
-      errorMessage: 'x\'s length must be at least 6.',
-      propertyValue: 'test'
+    deepEqual(MinLength.validate({ threshold: 6 })('test'), {
+      errorCodes: [ 'MIN_LENGTH' ],
+      propertyValue: 'test',
+      additionalProperties: {
+        threshold: 6
+      }
     });
   });
 });

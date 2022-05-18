@@ -11,28 +11,27 @@ type TestType = {
 describe('rules test suite', () => {
   it('rules with a valid object and a corresponding rule set performs a correct validation', () => {
     deepEqual(rules<TestType>(
-      ['str', NotEmpty.validate()],
+      ['str', NotEmpty.validate],
       ['arr', MinLength.validate({ threshold: 3 })]
     )({ str: 'test', arr: [1, 2, 3, 4] }), {});
   });
 
   it('rules with an invalid object and a corresponding rule set performs a correct validation', () => {
     deepEqual(rules<TestType>(
-      ['str', NotEmpty.validate()],
+      ['str', NotEmpty.validate],
       ['arr', MinLength.validate({ threshold: 3 })]
     )({ str: '', arr: [1, 2] }), {
-      str: [
-        {
-          errorMessage: 'str must not be empty.',
+      str: {
+          errorCodes: [ 'NOT_EMPTY' ],
           propertyValue: ''
+      },
+      arr: {
+        errorCodes: [ 'MIN_LENGTH' ],
+        propertyValue: [1, 2],
+        additionalProperties: {
+          threshold: 3
         }
-      ],
-      arr: [
-        {
-          errorMessage: 'arr\'s length must be at least 3.',
-          propertyValue: [1, 2]
-        }
-      ]
+      }
     });
   });
 });

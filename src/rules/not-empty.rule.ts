@@ -1,7 +1,6 @@
 import { Maybe } from "../types/maybe.type";
-import { RuleOptions } from "../types/rule-options.type";
 import { RuleViolation } from "../types/rule-violation.type";
-import { formatError } from "../util/format-error";
+import { basicRule } from "./basic.rule";
 
 export namespace NotEmpty {
   export const rule = (x: string | any[]): boolean => {
@@ -10,14 +9,11 @@ export namespace NotEmpty {
 
   export const errorMessage = "{propertyName} must not be empty.";
 
-  export const validate = (options?: RuleOptions) => (x: string | any[], propertyName: string) : Maybe<RuleViolation> => {
-    if (rule(x)) return Maybe.None();
-    else {
-      const _errorMessage = options?.errorMessage ?? errorMessage;
-      return Maybe.Some(RuleViolation.create(
-        formatError(_errorMessage, { propertyName: propertyName, propertyValue: x }),
-        x
-      ));
-    }
+  export const validate = (x: string | any[]) : Maybe<RuleViolation> => {
+    return basicRule({
+      ruleSatisfied: rule(x),
+      errorCode: 'NOT_EMPTY',
+      propertyValue: x
+    });
   }
 }
