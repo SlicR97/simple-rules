@@ -25,7 +25,6 @@ describe('NotEmpty test suite', () => {
 
   it('Validate should return object when empty', () => {
     deepEqual(NotEmpty.validate()('', 'x'), { 
-      propertyName: 'x',
       errorMessage: 'x must not be empty.',
       propertyValue: ''
     });
@@ -35,33 +34,22 @@ describe('NotEmpty test suite', () => {
     equal(NotEmpty.validate()(' ', 'x'), Maybe.None());
   });
 
-  it('Validate with options should return a custom property name', () => {
-    deepEqual(NotEmpty.validate({ propertyName: 'y' })('', 'x'), {
-      propertyName: 'y',
-      errorMessage: 'y must not be empty.',
-      propertyValue: ''
-    });
-  });
-
   it('Validate with options should return a custom error message', () => {
     deepEqual(NotEmpty.validate({ errorMessage: 'y' })('', 'x'), {
-      propertyName: 'x',
       errorMessage: 'y',
       propertyValue: ''
     });
   });
 
   it('Using {propertyName} in my custom error message should return a formatted error message', () => {
-    deepEqual(NotEmpty.validate({ propertyName: 'test', errorMessage: '{propertyName} should not be empty' })('', 'x'), {
-      propertyName: 'test',
-      errorMessage: 'test should not be empty',
+    deepEqual(NotEmpty.validate({ errorMessage: '{propertyName} should not be empty' })('', 'x'), {
+      errorMessage: 'x should not be empty',
       propertyValue: ''
     });
   });
 
   it('Using {propertyValue} in my custom error message should return a formatted error message', () => {
     deepEqual(NotEmpty.validate({ errorMessage: 'Expected not empty, found: {propertyValue}' })([], 'x'), {
-      propertyName: 'x',
       errorMessage: 'Expected not empty, found: []',
       propertyValue: []
     });

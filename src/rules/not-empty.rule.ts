@@ -13,11 +13,9 @@ export namespace NotEmpty {
   export const validate = (options?: RuleOptions) => (x: string | any[], propertyName: string) : Maybe<RuleViolation> => {
     if (rule(x)) return Maybe.None();
     else {
-      const _propertyName = options?.propertyName ?? propertyName;
       const _errorMessage = options?.errorMessage ?? errorMessage;
       return Maybe.Some(RuleViolation.create(
-        _propertyName,
-        formatError(_errorMessage, { propertyName: _propertyName, propertyValue: x }),
+        formatError(_errorMessage, { propertyName: propertyName, propertyValue: x }),
         x
       ));
     }
