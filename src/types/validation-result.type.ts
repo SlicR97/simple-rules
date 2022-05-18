@@ -1,6 +1,6 @@
-import { RuleViolations } from './rule-violation.type';
+import { RuleViolation } from './rule-violation.type';
 
-type ValidationResultField<TU> = RuleViolations | ValidationResult<TU>;
+type ValidationResultField<TU> = RuleViolation | ValidationResult<TU>;
 export type ValidationResult<T> = {
   [p in keyof T]?: ValidationResultField<p>;
 }

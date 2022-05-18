@@ -9,7 +9,7 @@ type TestType = {
 describe('Codependent rules test suite', () => {
   it('Codependent rules with a valid object do not return errors', () => {
     deepEqual(rules<TestType>(
-      ['foo', (foo: string, t: TestType) => foo !== t.bar, 'foo must be equal to bar']
+      ['foo', (foo: string, t: TestType) => foo !== t.bar, 'FOO_EQ_BAR']
     )({
       foo: 'test',
       bar: 'test'
@@ -18,17 +18,15 @@ describe('Codependent rules test suite', () => {
 
   it('Codependent rules with an invalid object return errors', () => {
     deepEqual(rules<TestType>(
-      ['foo', (foo: string, t: TestType) => foo !== t.bar, 'foo must be equal to bar']
+      ['foo', (foo: string, t: TestType) => foo !== t.bar, 'FOO_EQ_BAR']
     )({
       foo: 'test',
       bar: 'baz'
     }), {
-      foo: [
-        {
-          errorMessage: 'foo must be equal to bar',
-          propertyValue: 'test'
-        }
-      ]
+      foo: {
+        errorCodes: [ 'FOO_EQ_BAR' ],
+        propertyValue: 'test'
+      }
     })
   })
 });

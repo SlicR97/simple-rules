@@ -1,10 +1,9 @@
 import { Maybe } from "../types/maybe.type";
-import { RuleOptions } from "../types/rule-options.type";
 import { RuleViolation } from "../types/rule-violation.type";
 import { basicRule } from "./basic.rule";
 
 export namespace MinLength {
-  type MinLengthOptions = RuleOptions & {
+  type MinLengthOptions = {
     threshold: number;
   }
 
@@ -14,16 +13,12 @@ export namespace MinLength {
 
   export const errorMessage = "{propertyName}'s length must be at least {minLength}.";
 
-  export const validate = (options: MinLengthOptions) => (x: string | any[], propertyName: string) : Maybe<RuleViolation> => {
-    return basicRule<MinLengthOptions>({
-      options: options,
+  export const validate = (options: MinLengthOptions) => (x: string | any[]) : Maybe<RuleViolation> => {
+    return basicRule({
       ruleSatisfied: rule(x, options.threshold),
-      propertyName: propertyName,
-      errorMessage: errorMessage,
+      errorCode: 'MIN_LENGTH',
       propertyValue: x,
-      additionalMessageProperties: {
-        minLength: options.threshold
-      }
+      additionalProperties: options
     });
   }
 }
