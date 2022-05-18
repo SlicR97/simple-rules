@@ -34,4 +34,19 @@ describe('rules test suite', () => {
       }
     });
   });
+
+  it('rules with an invalid object and multiple rules on the same property return an extended object', () => {
+    deepEqual(rules<TestType>(
+      ['str', NotEmpty.validate],
+      ['str', MinLength.validate({ threshold: 3 })]
+    )({ str: '', arr: [] }), {
+      str: {
+        errorCodes: [ 'NOT_EMPTY', 'MIN_LENGTH' ],
+        propertyValue: '',
+        additionalProperties: {
+          threshold: 3
+        }
+      }
+    });
+  });
 });
