@@ -15,12 +15,10 @@ type BasicRuleParameters<TOptions extends RuleOptions> = {
 export const basicRule = <TOptions extends RuleOptions>(parameters: BasicRuleParameters<TOptions>): Maybe<RuleViolation> => {
   if(parameters.ruleSatisfied) return Maybe.None();
 
-  const _propertyName = parameters.options?.propertyName ?? parameters.propertyName;
   const _errorMessage = parameters.options?.errorMessage ?? parameters.errorMessage;
   return Maybe.Some(RuleViolation.create(
-    _propertyName,
     formatError(_errorMessage, { 
-      propertyName: _propertyName, 
+      propertyName: parameters.propertyName, 
       propertyValue: parameters.propertyValue, 
       ...parameters.additionalMessageProperties 
     }),
