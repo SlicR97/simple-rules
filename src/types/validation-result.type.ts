@@ -1,16 +1,17 @@
 import { RuleViolations } from './rule-violation.type';
 
+type ValidationResultField<TU> = RuleViolations | ValidationResult<TU>;
 export type ValidationResult<T> = {
-  [p in keyof T]?: RuleViolations;
+  [p in keyof T]?: ValidationResultField<p>;
 }
 
 export namespace ValidationResult {
   export const empty = <T>(): ValidationResult<T> => ({});
 
-  export const apply = <T>(
+  export const apply = <T, TU>(
     validationResult: ValidationResult<T>, 
     key: keyof T, 
-    violations: RuleViolations
+    violations: ValidationResultField<TU>
   ): ValidationResult<T> => ({
     ...validationResult,
     [key]: violations
