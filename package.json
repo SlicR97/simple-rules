@@ -1,11 +1,11 @@
 {
   "name": "@slicr97/simple-rules",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Simple input validation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "npx tsc",
+    "prepublish": "rm -rf dist && npx tsc",
     "test": "nyc mocha",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
