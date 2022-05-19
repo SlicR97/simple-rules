@@ -33,9 +33,8 @@ export namespace MinLength {
    * @param x Input for validation
    * @returns RuleViolation if the validation fails, or nothing if it succeeds
    */
-  export const validate =
-    (options: Options) =>
-    (x: string | any[]): Maybe<RuleViolation<string | any[]>> => {
+  export const validate = <Type extends string | any[]>(options: Options) =>
+    (x: Type): Maybe<RuleViolation<Type>> => {
       return basicRule({
         ruleSatisfied: rule(x, options.threshold),
         errorCode: 'MIN_LENGTH',

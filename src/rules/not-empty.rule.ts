@@ -21,9 +21,9 @@ export namespace NotEmpty {
    * @param x input for validation
    * @returns RuleViolation if the validation fails, or nothing if it succeeds
    */
-  export const validate = (
-    x: string | any[],
-  ): Maybe<RuleViolation<string | any[]>> => {
+  export const validate = <Type extends string | any[]>(
+    x: Type,
+  ): Maybe<RuleViolation<Type>> => {
     return basicRule({
       ruleSatisfied: rule(x),
       errorCode: 'NOT_EMPTY',
