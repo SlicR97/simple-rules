@@ -2,32 +2,69 @@ import { Maybe } from './types/maybe.type';
 import { RuleViolation } from './types/rule-violation.type';
 import { ValidationResult } from './types/validation-result.type';
 
+/**
+ * Function that checks a normal rule and 
+ * maybe returns a RuleViolation
+ * 
+ * @param t The property to validata
+ */
 type NormalRuleFunction<Type, TProperty extends keyof Type> = (
   t: Type[TProperty],
 ) => Maybe<RuleViolation<Type[TProperty]>>;
+
+/**
+ * Tuple of the property key and a function to validate that property
+ */
 type NormalRule<Type, TProperty extends keyof Type> = [
   TProperty,
   NormalRuleFunction<Type, TProperty>,
 ];
 
+/**
+ * Function that checks a nested rule and
+ * returns a ValidationResult
+ * 
+ * @param t The property to validate
+ */
 type NestedRuleFunction<Type, TProperty extends keyof Type> = (
   t: Type[TProperty],
 ) => ValidationResult<Type[TProperty]>;
+
+/**
+ * Tuple of the property key and a function to validate the nested property
+ */
 type NestedRule<Type, TProperty extends keyof Type> = [
   TProperty,
   NestedRuleFunction<Type, TProperty>,
 ];
 
+/**
+ * Function that takes a property and the parent object
+ * in order to validate two codependent properties
+ * 
+ * @param tu The property to validate
+ * @param t The parent object
+ */
 type CodependentRuleFunction<Type, TProperty extends keyof Type> = (
   tu: Type[TProperty],
   t: Type,
 ) => boolean;
+
+/**
+ * Triple of
+ * a) The property key
+ * b) A function to validate that property
+ * c) The error code to return in case the validation fails
+ */
 type CodependentRule<Type, TProperty extends keyof Type> = [
   TProperty,
   CodependentRuleFunction<Type, TProperty>,
   string,
 ];
 
+/**
+ * Union type of the three different possible rule types
+ */
 type Rule<Type, TProperty extends keyof Type> =
   | NormalRule<Type, TProperty>
   | NestedRule<Type, TProperty>
@@ -73,6 +110,15 @@ const isCodependentRuleFunction = <Type, TProperty extends keyof Type>(
     | CodependentRuleFunction<Type, TProperty>,
 ) => fn.length === 2;
 
+/**
+ * Partially applied function that takes a set of rules 
+ * and applies them against a given object
+ * 
+ * @param rules The rules to be applied
+ * @param t The object to apply the rules to
+ * 
+ * @returns A ValidationResult of the given type
+ */
 export const rules =
   <Type>(...rules: Rule<Type, keyof Type>[]) =>
   (t: Type): ValidationResult<Type> =>
