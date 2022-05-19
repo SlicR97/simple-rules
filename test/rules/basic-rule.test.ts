@@ -1,6 +1,6 @@
 import { deepEqual, equal } from "assert"
 
-import { basicRule } from '../../src/rules/basic.rule';
+import { basicRule } from '../../src/index';
 
 describe('basic.rule.ts', () => {
   describe('#basicRule()', () => {

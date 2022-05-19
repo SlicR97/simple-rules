@@ -1,6 +1,4 @@
-import { Maybe } from './types/maybe.type';
-import { RuleViolation } from './types/rule-violation.type';
-import { ValidationResult } from './types/validation-result.type';
+import { Maybe, RuleViolation, ValidationResult } from './index';
 
 /**
  * Function that checks a normal rule and 

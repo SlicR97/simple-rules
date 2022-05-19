@@ -1,7 +1,5 @@
 import { deepEqual } from 'assert';
-import { rules } from '../src/rules';
-import { NotEmpty } from '../src/rules/not-empty.rule';
-import { MinLength } from '../src/rules/min-length.rule';
+import { rules, Rules } from '../src/index';
 
 type NestedType = {
   t: TestType;
@@ -16,15 +14,15 @@ describe('rules.ts', () => {
   describe('#rules()', () => {
     it('should return nothing when given a valid object', () => {
       deepEqual(rules<TestType>(
-        ['str', NotEmpty.validate],
-        ['arr', MinLength.validate({ threshold: 3 })]
+        ['str', Rules.notEmpty],
+        ['arr', Rules.minLength({ threshold: 3 })]
       )({ str: 'test', arr: [1, 2, 3, 4] }), {});
     });
   
     it('should return an error object when given an invalid object', () => {
       deepEqual(rules<TestType>(
-        ['str', NotEmpty.validate],
-        ['arr', MinLength.validate({ threshold: 3 })]
+        ['str', Rules.notEmpty],
+        ['arr', Rules.minLength({ threshold: 3 })]
       )({ str: '', arr: [1, 2] }), {
         str: {
             errorCodes: [ 'NOT_EMPTY' ],
@@ -42,8 +40,8 @@ describe('rules.ts', () => {
   
     it('should return an error object whose fields have been merged correctly given multiple rules on the same property', () => {
       deepEqual(rules<TestType>(
-        ['str', NotEmpty.validate],
-        ['str', MinLength.validate({ threshold: 3 })]
+        ['str', Rules.notEmpty],
+        ['str', Rules.minLength({ threshold: 3 })]
       )({ str: '', arr: [] }), {
         str: {
           errorCodes: [ 'NOT_EMPTY', 'MIN_LENGTH' ],
@@ -58,8 +56,8 @@ describe('rules.ts', () => {
     it('should return nothing when given a correct nested object', () => {
       deepEqual(rules<NestedType>(
         ['t', rules<TestType>(
-          ['str', NotEmpty.validate],
-          ['arr', NotEmpty.validate]
+          ['str', Rules.notEmpty],
+          ['arr', Rules.notEmpty]
         )]
       )({
         t: {
@@ -72,8 +70,8 @@ describe('rules.ts', () => {
     it('should return a nested error when given an invalid nested object', () => {
       deepEqual(rules<NestedType>(
         ['t', rules<TestType>(
-          ['str', NotEmpty.validate],
-          ['arr', NotEmpty.validate]
+          ['str', Rules.notEmpty],
+          ['arr', Rules.notEmpty]
         )]
       )({
         t: {

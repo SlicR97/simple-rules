@@ -1,6 +1,6 @@
 import { deepEqual, equal } from "assert";
 
-import { RuleViolation } from '../../src/types/rule-violation.type';
+import { RuleViolation } from '../../src/index';
 
 describe('rule-violation.type.ts', () => {
   describe('#create()', () => {

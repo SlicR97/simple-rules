@@ -1,4 +1,4 @@
-import { Maybe } from './maybe.type';
+import { Maybe } from '../index';
 
 /**
  * Detail of violated rules on a single property

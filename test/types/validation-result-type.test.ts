@@ -1,7 +1,5 @@
 import { deepEqual, throws } from "assert";
-import { RuleViolation } from "../../src/types/rule-violation.type";
-
-import { ValidationResult } from '../../src/types/validation-result.type';
+import { RuleViolation, ValidationResult } from "../../src/index";
 
 type NestedType = {
   t: TestType;

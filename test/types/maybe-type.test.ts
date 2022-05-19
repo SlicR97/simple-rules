@@ -1,5 +1,5 @@
 import { equal } from "assert"
-import { Maybe } from "../../src/types/maybe.type"
+import { Maybe } from "../../src/index"
 
 describe('maybe.type.ts', () => {
   describe('#Some()', () => {
