@@ -1,5 +1,4 @@
-import { Maybe } from '../types/maybe.type';
-import { RuleViolation } from '../types/rule-violation.type';
+import { Maybe, RuleViolation } from '../index';
 
 /**
  * Input parameters for easily evaluating a basic rule and returning a RuleViolation if its violated

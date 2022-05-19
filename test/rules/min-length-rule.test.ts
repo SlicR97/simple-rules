@@ -1,5 +1,5 @@
 import { deepEqual, equal } from 'assert';
-import { MinLength } from '../../src/rules/min-length.rule';
+import { MinLength } from '../../src/index';
 
 describe('min-length.rule.ts', () => {
   describe('#rule()', () => {

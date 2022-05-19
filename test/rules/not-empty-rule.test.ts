@@ -1,6 +1,5 @@
 import { deepEqual, equal } from 'assert';
-import { NotEmpty } from '../../src/rules/not-empty.rule';
-import { Maybe } from '../../src/types/maybe.type';
+import { NotEmpty, Maybe } from '../../src/index';
 
 describe('not-empty.rule.ts', () => {
   describe('#rule()', () => {

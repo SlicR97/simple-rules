@@ -1,6 +1,4 @@
-import { Maybe } from '../types/maybe.type';
-import { RuleViolation } from '../types/rule-violation.type';
-import { basicRule } from './basic.rule';
+import { Maybe, RuleViolation, basicRule } from '../index';
 
 /**
  * Validation for minimum 

@@ -1,4 +1,4 @@
-import { RuleViolation } from './rule-violation.type';
+import { RuleViolation } from '../index';
 
 /**
  * Single field of a ValidationResult.
