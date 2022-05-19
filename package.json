@@ -1,6 +1,6 @@
 {
   "name": "simple-rules",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Simple input validation",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
