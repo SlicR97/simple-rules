@@ -19,17 +19,24 @@ export namespace RuleViolation {
   }
 
   export const isRuleViolation = (a: any) =>
-    a.hasOwnProperty('errorCodes') && a.hasOwnProperty('propertyValue');
+    Array.isArray(a.errorCodes) && a.hasOwnProperty('propertyValue');
 
-  export const merge = (a: RuleViolation, b: RuleViolation): RuleViolation => ({
-    errorCodes: [
-      ...a.errorCodes,
-      ...b.errorCodes
-    ],
-    propertyValue: a.propertyValue,
-    additionalProperties: {
-      ...a.additionalProperties,
-      ...b.additionalProperties
+  export const merge = (a: RuleViolation, b: RuleViolation): RuleViolation => {
+    const merged: RuleViolation = {
+      errorCodes: [
+        ...a.errorCodes,
+        ...b.errorCodes
+      ],
+      propertyValue: a.propertyValue
+    };
+
+    if (a.additionalProperties || b.additionalProperties) {
+      merged.additionalProperties = {
+        ...a.additionalProperties,
+        ...b.additionalProperties
+      };
     }
-  });
+
+    return merged;
+  }
 }
