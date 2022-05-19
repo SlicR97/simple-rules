@@ -1,5 +1,5 @@
 {
-  "name": "simple-rules",
+  "name": "@slicr97/simple-rules",
   "version": "1.0.0",
   "description": "Simple input validation",
   "main": "dist/index.js",
