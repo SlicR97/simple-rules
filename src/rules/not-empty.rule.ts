@@ -7,7 +7,7 @@ export namespace NotEmpty {
     return x.length !== 0;
   };
 
-  export const validate = (x: string | any[]) : Maybe<RuleViolation> => {
+  export const validate = (x: string | any[]) : Maybe<RuleViolation<string | any[]>> => {
     return basicRule({
       ruleSatisfied: rule(x),
       errorCode: 'NOT_EMPTY',

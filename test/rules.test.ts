@@ -105,7 +105,7 @@ describe('rules.ts', () => {
   
     it('Codependent rules with an invalid object return errors', () => {
       deepEqual(rules<TestType>(
-        ['str', (foo, t) => foo !== t.arr.toString(), 'FOO_EQ_BAR']
+        ['str', (str, t) => str !== t.arr.toString(), 'FOO_EQ_BAR']
       )({
         str: 'test',
         arr: []

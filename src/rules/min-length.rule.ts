@@ -11,7 +11,7 @@ export namespace MinLength {
     return x.length >= threshold;
   };
 
-  export const validate = (options: MinLengthOptions) => (x: string | any[]) : Maybe<RuleViolation> => {
+  export const validate = (options: MinLengthOptions) => (x: string | any[]) : Maybe<RuleViolation<string | any[]>> => {
     return basicRule({
       ruleSatisfied: rule(x, options.threshold),
       errorCode: 'MIN_LENGTH',

@@ -23,19 +23,19 @@ describe('validation-result.type.ts', () => {
       const res: ValidationResult<TestType> = {
         foo: {
           errorCodes: [ 'bar' ],
-          propertyValue: 1
+          propertyValue: ''
         }
       };
 
-      const violation: RuleViolation = {
+      const violation: RuleViolation<string> = {
         errorCodes: [ 'baz' ],
-        propertyValue: 1
+        propertyValue: ''
       };
 
       deepEqual(ValidationResult.apply(res, 'foo', violation), {
         foo: {
           errorCodes: [ 'bar', 'baz' ],
-          propertyValue: 1
+          propertyValue: ''
         }
       });
     });
@@ -45,14 +45,16 @@ describe('validation-result.type.ts', () => {
         t: {
           foo: {
             errorCodes: [ 'bar' ],
-            propertyValue: 1
+            propertyValue: ''
           }
         }
       };
 
-      const violation: RuleViolation = {
+      const violation: RuleViolation<TestType> = {
         errorCodes: [ 'baz' ],
-        propertyValue: 3
+        propertyValue: {
+          foo: ''
+        }
       };
 
       throws(() => {
@@ -64,7 +66,9 @@ describe('validation-result.type.ts', () => {
       const res: ValidationResult<NestedType> = {
         t: {
           errorCodes: [ 'bar' ],
-          propertyValue: 1
+          propertyValue: {
+            foo: ''
+          }
         }
       };
 
@@ -85,7 +89,7 @@ describe('validation-result.type.ts', () => {
         t: {
           foo: {
             errorCodes: [ 'bar' ],
-            propertyValue: 3
+            propertyValue: ''
           }
         }
       };
@@ -93,7 +97,7 @@ describe('validation-result.type.ts', () => {
       const newRes: ValidationResult<TestType> = {
         foo: {
           errorCodes: [ 'baz' ],
-          propertyValue: 5
+          propertyValue: ''
         }
       };
 
