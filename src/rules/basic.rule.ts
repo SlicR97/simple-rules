@@ -1,22 +1,22 @@
 import { Maybe } from "../types/maybe.type";
 import { RuleViolation } from "../types/rule-violation.type";
 
-type BasicRuleParameters = {
+type BasicRuleParameters<TProperty> = {
   ruleSatisfied: boolean;
   errorCode: string;
-  propertyValue: any;
+  propertyValue: TProperty;
   additionalProperties?: Maybe<Record<string, any>>;
 }
 
-export const basicRule = ({
+export const basicRule = <TProperty>({
   ruleSatisfied,
   errorCode,
   propertyValue,
   additionalProperties = undefined
-} : BasicRuleParameters): Maybe<RuleViolation> => {
+} : BasicRuleParameters<TProperty>): Maybe<RuleViolation<TProperty>> => {
   if(ruleSatisfied) return Maybe.None();
 
-  return Maybe.Some(RuleViolation.create(
+  return Maybe.Some(RuleViolation.create<TProperty>(
     [errorCode],
     propertyValue,
     additionalProperties

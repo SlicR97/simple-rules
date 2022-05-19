@@ -1,13 +1,13 @@
 import { Maybe } from "./maybe.type";
 
-export type RuleViolation = {
+export type RuleViolation<T> = {
   errorCodes: string[];
-  propertyValue: Maybe<any>;
+  propertyValue: Maybe<T>;
   additionalProperties?: Maybe<Record<string, any>>;
 }
 
 export namespace RuleViolation {
-  export const create = (errorCodes: string[], propertyValue: Maybe<any> = Maybe.None(), additionalProperties: Maybe<Record<string, any>> = Maybe.None()): RuleViolation => {
+  export const create = <TProperty>(errorCodes: string[], propertyValue: Maybe<TProperty> = Maybe.None(), additionalProperties: Maybe<Record<string, any>> = Maybe.None()): RuleViolation<TProperty> => {
     if (additionalProperties) return {
       errorCodes,
       propertyValue,
@@ -21,8 +21,8 @@ export namespace RuleViolation {
   export const isRuleViolation = (a: any) =>
     Array.isArray(a.errorCodes) && a.hasOwnProperty('propertyValue');
 
-  export const merge = (a: RuleViolation, b: RuleViolation): RuleViolation => {
-    const merged: RuleViolation = {
+  export const merge = <Type>(a: RuleViolation<Type>, b: RuleViolation<Type>): RuleViolation<Type> => {
+    const merged: RuleViolation<Type> = {
       errorCodes: [
         ...a.errorCodes,
         ...b.errorCodes

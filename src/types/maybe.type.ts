@@ -1,6 +1,6 @@
-export type Maybe<T> = T | undefined;
+export type Maybe<Type> = Type | undefined;
 
 export namespace Maybe {
-  export const Some = <T>(obj: T): Maybe<T> => obj;
-  export const None = <T>(): Maybe<T> => undefined;
+  export const Some = <Type>(obj: Type): Maybe<Type> => obj;
+  export const None = <Type>(): Maybe<Type> => undefined;
 }

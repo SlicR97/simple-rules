@@ -1,19 +1,19 @@
 import { RuleViolation } from './rule-violation.type';
 
-type ValidationResultField<T, TU extends keyof T> = RuleViolation | ValidationResult<T[TU]>;
-export type ValidationResult<T> = {
-  [p in keyof T]?: ValidationResultField<T, p>;
+type ValidationResultField<Type, TProperty extends keyof Type> = RuleViolation<Type[TProperty]> | ValidationResult<Type[TProperty]>;
+export type ValidationResult<Type> = {
+  [key in keyof Type]?: ValidationResultField<Type, key>;
 }
 
 export namespace ValidationResult {
-  export const empty = <T>(): ValidationResult<T> => ({});
+  export const empty = <Type>(): ValidationResult<Type> => ({});
 
-  export const apply = <T, TU extends keyof T>(
-    validationResult: ValidationResult<T>, 
-    key: keyof T, 
-    violations: ValidationResultField<T, TU>
-  ): ValidationResult<T> => {
-    const affectedField = validationResult[key] as ValidationResultField<T, TU>;
+  export const apply = <Type, TProperty extends keyof Type>(
+    validationResult: ValidationResult<Type>, 
+    key: keyof Type, 
+    violations: ValidationResultField<Type, TProperty>
+  ): ValidationResult<Type> => {
+    const affectedField = validationResult[key] as ValidationResultField<Type, TProperty>;
     if (!affectedField) {
       return {
         ...validationResult,
@@ -27,7 +27,7 @@ export namespace ValidationResult {
 
         return {
           ...validationResult,
-          [key]: RuleViolation.merge(affectedField as RuleViolation, violations as RuleViolation)
+          [key]: RuleViolation.merge(affectedField as RuleViolation<Type[TProperty]>, violations as RuleViolation<Type[TProperty]>)
         };
       } else {
         throw new Error('Cannot merge ValidationResults');
