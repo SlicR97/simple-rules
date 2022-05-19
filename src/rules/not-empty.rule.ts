@@ -7,8 +7,6 @@ export namespace NotEmpty {
     return x.length !== 0;
   };
 
-  export const errorMessage = "{propertyName} must not be empty.";
-
   export const validate = (x: string | any[]) : Maybe<RuleViolation> => {
     return basicRule({
       ruleSatisfied: rule(x),
