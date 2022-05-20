@@ -11,9 +11,19 @@ export * from './rules/basic.rule';
 export * from './rules/min-length.rule';
 export * from './rules/not-empty.rule';
 
-const Rules = {
+/**
+ * @namespace
+ * @borrows NotEmpty.validate as notEmpty
+ * @borrows MinLength.validate as minLength
+ */
+export const Rules = {
+  /**
+   * Shorthand for @see {@link NotEmpty.validate}
+   */
   notEmpty: NotEmpty.validate,
+
+  /**
+   * Shorthand for @see {@link MinLength.validate}
+   */
   minLength: MinLength.validate
 };
-
-export { Rules };
