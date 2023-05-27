@@ -1,103 +1,132 @@
-import { deepEqual, equal } from "assert";
-
-import { RuleViolation } from '../../src/index';
+import { Maybe, RuleViolation } from '../../src'
+import { expect } from 'chai'
 
 describe('rule-violation.type.ts', () => {
   describe('#create()', () => {
-    it('should not have a field \'additionalProperties\' when the parameter \'additionalProperties\' was undefined', () => {
-      deepEqual(RuleViolation.create([ 'ERROR' ], 'foo'), {
-        errorCodes: [ 'ERROR' ],
-        propertyValue: 'foo'
-      });
-    });
+    it("does not have a field 'additionalProperties' when the parameter 'additionalProperties' is undefined", () => {
+      expect(RuleViolation.create(['ERROR'], 'foo')).to.eql({
+        errorCodes: ['ERROR'],
+        propertyValue: 'foo',
+      })
+    })
 
-    it('should have a field \'additionalProperties\' when the parameter \'additionalProperties\' was not undefined', () => {
-      deepEqual(RuleViolation.create([ 'ERROR' ], 'foo', { bar: 'baz' }), {
-        errorCodes: [ 'ERROR' ],
+    it("does not have a field 'propertyValue' when the parameter 'propertyValue' is undefined", () => {
+      expect(RuleViolation.create(['ERROR'])).to.eql({
+        errorCodes: ['ERROR'],
+        propertyValue: Maybe.None(),
+      })
+    })
+
+    it("has a field 'additionalProperties' when the parameter 'additionalProperties' is not undefined", () => {
+      expect(RuleViolation.create(['ERROR'], 'foo', { bar: 'baz' })).to.eql({
+        errorCodes: ['ERROR'],
         propertyValue: 'foo',
         additionalProperties: {
-          bar: 'baz'
-        }
-      });
-    });
-  });
+          bar: 'baz',
+        },
+      })
+    })
+  })
 
   describe('#isRuleViolation()', () => {
-    it('should return true for an object with array \'errorCodes\' and property \'propertyValues\'', () => {
-      equal(RuleViolation.isRuleViolation({
-        errorCodes: [ 'foo', 'bar' ],
-        propertyValue: 2
-      }), true);
-    });
+    it("returns true for an object with array 'errorCodes' and property 'propertyValues'", () => {
+      expect(
+        RuleViolation.isRuleViolation({
+          errorCodes: ['foo', 'bar'],
+          propertyValue: 2,
+        }),
+      ).to.be.true
+    })
 
-    it('should return false for an object with non-array property \'errorCodes\' and property \'propertyValues\'', () => {
-      equal(RuleViolation.isRuleViolation({
-        errorCodes: 234.43,
-        propertyValue: 'foo'
-      }), false);
-    });
+    it("returns false for an object with non-array property 'errorCodes' and property 'propertyValues'", () => {
+      expect(
+        RuleViolation.isRuleViolation({
+          errorCodes: 234.43,
+          propertyValue: 'foo',
+        }),
+      ).to.be.false
+    })
 
-    it('should return false for an object without property \'errorCodes\'', () => {
-      equal(RuleViolation.isRuleViolation({
-        propertyValue: 'foo'
-      }), false);
-    });
+    it("returns false for an object without property 'errorCodes'", () => {
+      expect(
+        RuleViolation.isRuleViolation({
+          propertyValue: 'foo',
+        }),
+      ).to.be.false
+    })
 
-    it('should return false for an object without property \'propertyValues\'', () => {
-      equal(RuleViolation.isRuleViolation({
-        errorCodes: [ 'foo', 'bar' ]
-      }), false);
-    });
-  });
+    it("returns false for an object without property 'propertyValues'", () => {
+      expect(
+        RuleViolation.isRuleViolation({
+          errorCodes: ['foo', 'bar'],
+        }),
+      ).to.be.false
+    })
+  })
 
   describe('#merge()', () => {
-    it('should merge the error codes of two RuleViolation objects', () => {
-      deepEqual(RuleViolation.merge({
-        errorCodes: [ 'foo' ],
-        propertyValue: 1
-      }, {
-        errorCodes: [ 'bar' ],
-        propertyValue: 1
-      }), {
-        errorCodes: [ 'foo', 'bar' ],
-        propertyValue: 1
-      });
-    });
+    it('merges the error codes of two RuleViolation objects', () => {
+      expect(
+        RuleViolation.merge(
+          {
+            errorCodes: ['foo'],
+            propertyValue: 1,
+          },
+          {
+            errorCodes: ['bar'],
+            propertyValue: 1,
+          },
+        ),
+      ).to.be.eql({
+        errorCodes: ['foo', 'bar'],
+        propertyValue: 1,
+      })
+    })
 
-    it('should always use a\'s propertyValue, even if b\'s is different', () => {
-      deepEqual(RuleViolation.merge({
+    it("always uses a's propertyValue, even if b's is different", () => {
+      expect(
+        RuleViolation.merge(
+          {
+            errorCodes: [],
+            propertyValue: 1,
+          },
+          {
+            errorCodes: [],
+            propertyValue: 2,
+          },
+        ),
+      ).to.be.eql({
         errorCodes: [],
-        propertyValue: 1
-      }, {
-        errorCodes: [],
-        propertyValue: 2
-      }), {
-        errorCodes: [],
-        propertyValue: 1
-      });
-    });
+        propertyValue: 1,
+      })
+    })
 
-    it('should merge the additionalProperties of two RuleViolation objects, if provided', () => {
-      deepEqual(RuleViolation.merge({
-        errorCodes: [ 'MIN_LENGTH' ],
-        propertyValue: '',
-        additionalProperties: {
-          threshold: 3
-        }
-      }, {
-        errorCodes: [ 'NOT_EMPTY' ],
-        propertyValue: '',
-        additionalProperties: {
-          foo: 'bar'
-        }
-      }), {
-        errorCodes: [ 'MIN_LENGTH', 'NOT_EMPTY' ],
+    it('merges the additionalProperties of two RuleViolation objects, if provided', () => {
+      expect(
+        RuleViolation.merge(
+          {
+            errorCodes: ['MIN_LENGTH'],
+            propertyValue: '',
+            additionalProperties: {
+              threshold: 3,
+            },
+          },
+          {
+            errorCodes: ['NOT_EMPTY'],
+            propertyValue: '',
+            additionalProperties: {
+              foo: 'bar',
+            },
+          },
+        ),
+      ).to.eql({
+        errorCodes: ['MIN_LENGTH', 'NOT_EMPTY'],
         propertyValue: '',
         additionalProperties: {
           threshold: 3,
-          foo: 'bar'
-        }
-      });
-    });
-  });
-});
+          foo: 'bar',
+        },
+      })
+    })
+  })
+})

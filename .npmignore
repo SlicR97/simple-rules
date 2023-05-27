@@ -1,12 +1,14 @@
+.git
+.husky
+.idea
 .nyc_output
 node_modules
-sample
 src
 test
 .eslintignore
 .eslintrc
 .gitignore
-.mocharc.json
 .prettierrc
+.mocharc.json
 tsconfig.json
 yarn.lock

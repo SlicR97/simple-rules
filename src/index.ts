@@ -1,17 +1,17 @@
-import { MinLength } from './rules/min-length.rule';
-import { NotEmpty } from './rules/not-empty.rule';
-import {Email} from "./rules/email.rule";
+import { MinLength } from './rules/min-length.rule'
+import { NotEmpty } from './rules/not-empty.rule'
+import { Email } from './rules/email.rule'
 
-export * from './rules';
+export * from './rules'
 
-export * from './types/maybe.type';
-export * from './types/rule-violation.type';
-export * from './types/validation-result.type';
+export * from './types/maybe.type'
+export * from './types/rule-violation.type'
+export * from './types/validation-result.type'
 
-export * from './rules/basic.rule';
-export * from './rules/email.rule';
-export * from './rules/min-length.rule';
-export * from './rules/not-empty.rule';
+export * from './rules/basic.rule'
+export * from './rules/email.rule'
+export * from './rules/min-length.rule'
+export * from './rules/not-empty.rule'
 
 /**
  * @namespace
@@ -23,7 +23,7 @@ export const Rules = {
    * Shorthand for @see {@link Email.validate}
    */
   email: Email.validate,
-  
+
   /**
    * Shorthand for @see {@link NotEmpty.validate}
    */
@@ -32,5 +32,5 @@ export const Rules = {
   /**
    * Shorthand for @see {@link MinLength.validate}
    */
-  minLength: MinLength.validate
-};
+  minLength: MinLength.validate,
+}
