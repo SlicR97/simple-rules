@@ -1,35 +1,35 @@
-import { deepEqual, equal } from 'assert';
-import { NotEmpty, Maybe } from '../../src/index';
+import { NotEmpty, Maybe } from '../../src'
+import { expect } from 'chai'
 
 describe('not-empty.rule.ts', () => {
   describe('#rule()', () => {
     it('should return false on an empty string', () => {
-      equal(NotEmpty.rule(''), false);
-    });
-  
+      expect(NotEmpty.rule('')).to.be.false
+    })
+
     it('should return false on an empty array', () => {
-      equal(NotEmpty.rule([]), false);
-    });
-  
+      expect(NotEmpty.rule([])).to.be.false
+    })
+
     it('should return true on a non-empty string', () => {
-      equal(NotEmpty.rule(' '), true);
-    });
-  
+      expect(NotEmpty.rule(' ')).to.be.true
+    })
+
     it('should return true on a non-empty array', () => {
-      equal(NotEmpty.rule([1]), true);
-    });
-  });
+      expect(NotEmpty.rule([1])).to.be.true
+    })
+  })
 
   describe('#validate()', () => {
     it('should return an error object when the input is empty', () => {
-      deepEqual(NotEmpty.validate(''), {
-        errorCodes: [ 'NOT_EMPTY' ],
-        propertyValue: ''
-      });
-    });
-  
+      expect(NotEmpty.validate('')).to.eql({
+        errorCodes: ['NOT_EMPTY'],
+        propertyValue: '',
+      })
+    })
+
     it('should return nothing when the input is not empty', () => {
-      equal(NotEmpty.validate(' '), Maybe.None());
-    });
-  });
-});
+      expect(NotEmpty.validate(' ')).to.eql(Maybe.None())
+    })
+  })
+})

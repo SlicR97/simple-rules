@@ -1,107 +1,101 @@
-import { deepEqual, throws } from "assert";
-import { RuleViolation, ValidationResult } from "../../src/index";
+import { RuleViolation, ValidationResult } from '../../src'
+import { expect } from 'chai'
 
 type NestedType = {
-  t: TestType;
-};
+  t: TestType
+}
 
 type TestType = {
-  foo: string;
-};
+  foo: string
+}
 
 describe('validation-result.type.ts', () => {
   describe('#empty()', () => {
-    it('should return an empty object', () => {
-      deepEqual(ValidationResult.empty(), {});
+    it('returns an empty object', () => {
+      expect(ValidationResult.empty()).to.eql({})
     })
-  });
+  })
 
   describe('#apply()', () => {
-    it('should merge two RuleViolation fields', () => {
+    it('merges two RuleViolation fields', () => {
       const res: ValidationResult<TestType> = {
         foo: {
-          errorCodes: [ 'bar' ],
-          propertyValue: ''
-        }
-      };
+          errorCodes: ['bar'],
+          propertyValue: '',
+        },
+      }
 
       const violation: RuleViolation<string> = {
-        errorCodes: [ 'baz' ],
-        propertyValue: ''
-      };
+        errorCodes: ['baz'],
+        propertyValue: '',
+      }
 
-      deepEqual(ValidationResult.apply(res, 'foo', violation), {
+      expect(ValidationResult.apply(res, 'foo', violation)).to.eql({
         foo: {
-          errorCodes: [ 'bar', 'baz' ],
-          propertyValue: ''
-        }
-      });
-    });
+          errorCodes: ['bar', 'baz'],
+          propertyValue: '',
+        },
+      })
+    })
 
-    it('should throw an error when merging a RuleViolation field with a ValidationResult field', () => {
+    it('throws an error when merging a RuleViolation field with a ValidationResult field', () => {
       const res: ValidationResult<NestedType> = {
         t: {
           foo: {
-            errorCodes: [ 'bar' ],
-            propertyValue: ''
-          }
-        }
-      };
+            errorCodes: ['bar'],
+            propertyValue: '',
+          },
+        },
+      }
 
       const violation: RuleViolation<TestType> = {
-        errorCodes: [ 'baz' ],
+        errorCodes: ['baz'],
         propertyValue: {
-          foo: ''
-        }
-      };
+          foo: '',
+        },
+      }
 
-      throws(() => {
-        ValidationResult.apply(res, 't', violation);
-      })
-    });
+      expect(() => ValidationResult.apply(res, 't', violation)).to.throw()
+    })
 
-    it('should throw an error when merging a ValidationResult field with a RuleViolation field', () => {
+    it('throws an error when merging a ValidationResult field with a RuleViolation field', () => {
       const res: ValidationResult<NestedType> = {
         t: {
-          errorCodes: [ 'bar' ],
+          errorCodes: ['bar'],
           propertyValue: {
-            foo: ''
-          }
-        }
-      };
+            foo: '',
+          },
+        },
+      }
 
       const newRes: ValidationResult<TestType> = {
         foo: {
-          errorCodes: [ 'bar' ],
-          propertyValue: ''
-        }
-      };
+          errorCodes: ['bar'],
+          propertyValue: '',
+        },
+      }
 
-      throws(() => {
-        ValidationResult.apply(res, 't', newRes);
-      });
-    });
+      expect(() => ValidationResult.apply(res, 't', newRes)).to.throw()
+    })
 
-    it('should throw an error when merging two ValidationResult fields', () => {
+    it('throws an error when merging two ValidationResult fields', () => {
       const res: ValidationResult<NestedType> = {
         t: {
           foo: {
-            errorCodes: [ 'bar' ],
-            propertyValue: ''
-          }
-        }
-      };
+            errorCodes: ['bar'],
+            propertyValue: '',
+          },
+        },
+      }
 
       const newRes: ValidationResult<TestType> = {
         foo: {
-          errorCodes: [ 'baz' ],
-          propertyValue: ''
-        }
-      };
+          errorCodes: ['baz'],
+          propertyValue: '',
+        },
+      }
 
-      throws(() => {
-        ValidationResult.apply(res, 't', newRes);
-      });
-    });
-  });
-});
+      expect(() => ValidationResult.apply(res, 't', newRes)).to.throw()
+    })
+  })
+})

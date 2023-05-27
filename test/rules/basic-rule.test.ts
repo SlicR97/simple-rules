@@ -1,26 +1,29 @@
-import { deepEqual, equal } from "assert"
-
-import { basicRule } from '../../src/index';
+import { basicRule } from '../../src'
+import { expect } from 'chai'
 
 describe('basic.rule.ts', () => {
   describe('#basicRule()', () => {
     it('Should return undefined if the condition is satisfied', () => {
-      equal(basicRule({
-        ruleSatisfied: true,
-        errorCode: 'ignored',
-        propertyValue: 'ignored'
-      }), undefined);
-    });
+      expect(
+        basicRule({
+          ruleSatisfied: true,
+          errorCode: 'ignored',
+          propertyValue: 'ignored',
+        }),
+      ).to.be.undefined
+    })
 
     it('Should return an error object if the condition is not satisfied', () => {
-      deepEqual(basicRule({
-        ruleSatisfied: false,
-        errorCode: 'ERROR',
-        propertyValue: 'foo'
-      }), {
-        errorCodes: [ 'ERROR' ],
-        propertyValue: 'foo'
-      });
-    });
-  });
-});
+      expect(
+        basicRule({
+          ruleSatisfied: false,
+          errorCode: 'ERROR',
+          propertyValue: 'foo',
+        }),
+      ).to.eql({
+        errorCodes: ['ERROR'],
+        propertyValue: 'foo',
+      })
+    })
+  })
+})

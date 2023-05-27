@@ -1,16 +1,16 @@
-import { equal } from "assert"
-import { Maybe } from "../../src/index"
+import { Maybe } from '../../src'
+import { expect } from 'chai'
 
 describe('maybe.type.ts', () => {
   describe('#Some()', () => {
-    it('should return the object that was passed to it', () => {
-      equal(Maybe.Some('test'), 'test');
-    });
-  });
+    it('returns the object that was passed to it', () => {
+      expect(Maybe.Some('test')).to.eq('test')
+    })
+  })
 
   describe('#None()', () => {
-    it('should return nothing', () => {
-      equal(Maybe.None(), undefined);
-    });
-  });
-});
+    it('returns nothing', () => {
+      expect(Maybe.None()).to.be.undefined
+    })
+  })
+})
