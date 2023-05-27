@@ -2,6 +2,7 @@ import { MinLength } from './rules/min-length.rule'
 import { NotEmpty } from './rules/not-empty.rule'
 import { Email } from './rules/email.rule'
 import { MaxLength } from './rules/max-length.rule'
+import { NotNullOrUndefined } from './rules/not-null-or-undefined.rule'
 
 export * from './rules'
 
@@ -14,6 +15,7 @@ export * from './rules/email.rule'
 export * from './rules/max-length.rule'
 export * from './rules/min-length.rule'
 export * from './rules/not-empty.rule'
+export * from './rules/not-null-or-undefined.rule'
 
 /**
  * @namespace
@@ -40,4 +42,9 @@ export const Rules = {
    * Shorthand for @see {@link MinLength.validate}
    */
   minLength: MinLength.validate,
+
+  /**
+   * Shorthand for @see {@link NotNullOrUndefined.validate}
+   */
+  notNullOrUndefined: NotNullOrUndefined.validate,
 }
