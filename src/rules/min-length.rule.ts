@@ -26,14 +26,18 @@ export namespace MinLength {
   };
 
   /**
-   * Partially applied function. Takes in the options for validation,
-   * then returns a function that takes a value to validate
+   * Partially applied function. 
    * 
    * @param options Validation options
-   * @param x Input for validation
-   * @returns RuleViolation if the validation fails, or nothing if it succeeds
+   * @returns a function that takes a value to validate
    */
   export const validate = <Type extends string | any[]>(options: Options) =>
+    /**
+     * Validation function
+     * 
+     * @param x Input for validation
+     * @returns RuleViolation if the validation fails, or nothing if it succeeds
+     */
     (x: Type): Maybe<RuleViolation<Type>> => {
       return basicRule({
         ruleSatisfied: rule(x, options.threshold),
