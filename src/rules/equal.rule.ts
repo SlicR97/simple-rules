@@ -2,11 +2,11 @@ import { Maybe, RuleViolation, basicRule } from '../index'
 
 /**
  * Validation for checking
- * if the property is different from the property passed in the configuration
+ * if the property is equal to the property passed in the configuration
  */
-export namespace NotEqual {
+export namespace Equal {
   /**
-   * Options for configuring the NotEqual rule
+   * Options for configuring the Equal rule
    *
    * @param other Value to compare against
    */
@@ -15,14 +15,14 @@ export namespace NotEqual {
   }
 
   /**
-   * Checks if input is different from the supplied property
+   * Checks if input is equal to the supplied property
    *
    * @param x Input to be checked
    * @param other Value to compare against
-   * @returns True if the input is different from the other value
+   * @returns True if the input is equal to the other value
    */
   export const rule = <T>(x: T, other: T): boolean => {
-    return x !== other
+    return x === other
   }
 
   /**
@@ -39,11 +39,10 @@ export namespace NotEqual {
      * @param x Input for validation
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
-    (x: T): Maybe<RuleViolation<T>> => {
-      return basicRule({
+    (x: T): Maybe<RuleViolation<T>> =>
+      basicRule({
         ruleSatisfied: rule(x, options.other),
-        errorCode: 'NOT_EQUAL',
+        errorCode: 'EQUAL',
         propertyValue: x,
       })
-    }
 }

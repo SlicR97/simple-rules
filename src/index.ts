@@ -4,6 +4,7 @@ import { Email } from './rules/email.rule'
 import { MaxLength } from './rules/max-length.rule'
 import { NotNullOrUndefined } from './rules/not-null-or-undefined.rule'
 import { NotEqual } from './rules/not-equal.rule'
+import { Equal } from './rules/equal.rule'
 
 export * from './rules'
 
@@ -13,6 +14,7 @@ export * from './types/validation-result.type'
 
 export * from './rules/basic.rule'
 export * from './rules/email.rule'
+export * from './rules/equal.rule'
 export * from './rules/max-length.rule'
 export * from './rules/min-length.rule'
 export * from './rules/not-empty.rule'
@@ -29,6 +31,11 @@ export const Rules = {
    * Shorthand for @see {@link Email.validate}
    */
   email: Email.validate,
+
+  /**
+   * Shorthand for @see {@link Equal.validate}
+   */
+  equal: Equal.validate,
 
   /**
    * Shorthand for @see {@link MaxLength.validate}
