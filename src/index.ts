@@ -12,6 +12,7 @@ import { GreaterThan } from './rules/greater-than.rule'
 import { GreaterThanOrEqual } from './rules/greater-than-or-equal.rule'
 import { Matches } from './rules/matches.rule'
 import { CreditCard } from './rules/credit-card.rule'
+import { Empty } from './rules/empty.rule'
 
 export * from './rules'
 
@@ -22,6 +23,7 @@ export * from './types/validation-result.type'
 export * from './rules/basic.rule'
 export * from './rules/credit-card.rule'
 export * from './rules/email.rule'
+export * from './rules/empty.rule'
 export * from './rules/equal.rule'
 export * from './rules/greater-than.rule'
 export * from './rules/greater-than-or-equal.rule'
@@ -50,6 +52,11 @@ export const Rules = {
    * Shorthand for @see {@link Email.validate}
    */
   email: Email.validate,
+
+  /**
+   * Shorthand for @see {@link NotEqual.validate}
+   */
+  empty: Empty.validate,
 
   /**
    * Shorthand for @see {@link Equal.validate}

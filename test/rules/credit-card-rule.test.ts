@@ -10,6 +10,10 @@ describe('credit-card.rule.ts', () => {
     it('returns false on an invalid credit card number', () => {
       expect(CreditCard.rule('4111 1111 1111 1112')).to.be.false
     })
+
+    it('returns false if the string contains a character that is not a digit', () => {
+      expect(CreditCard.rule('4111 1111 1111 111a')).to.be.false
+    })
   })
 
   describe('#validate()', () => {
