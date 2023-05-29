@@ -17,7 +17,7 @@ describe('not-equal.rule.ts', () => {
 
       expect(NotEqual.rule(obj, other)).to.be.false
     })
-    
+
     it('returns true when the input has no referential equality to the complex object to compare it to', () => {
       const obj = { foo: 'bar' }
       const other = { foo: 'bar' }
@@ -25,7 +25,7 @@ describe('not-equal.rule.ts', () => {
       expect(NotEqual.rule(obj, other)).to.be.true
     })
   })
-  
+
   describe('#validate()', () => {
     it('returns an error object when the input is equal to the object to compare it to', () => {
       expect(NotEqual.validate({ other: 1 })(1)).to.eql({

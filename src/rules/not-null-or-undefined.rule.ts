@@ -21,7 +21,9 @@ export namespace NotNullOrUndefined {
    * @param x input for validation
    * @returns RuleViolation if the validation fails, or nothing if it succeeds
    */
-  export const validate = <T>(x: T | null | undefined): Maybe<RuleViolation<T | null | undefined>> => {
+  export const validate = <T>(
+    x: T | null | undefined,
+  ): Maybe<RuleViolation<T | null | undefined>> => {
     return basicRule({
       ruleSatisfied: rule(x),
       errorCode: 'NOT_NULL_OR_UNDEFINED',

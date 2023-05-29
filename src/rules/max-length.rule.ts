@@ -33,18 +33,18 @@ export namespace MaxLength {
    */
   export const validate =
     <Type extends string | any[]>(options: Options) =>
-      /**
-       * Validation function
-       *
-       * @param x Input for validation
-       * @returns RuleViolation if the validation fails, or nothing if it succeeds
-       */
-      (x: Type): Maybe<RuleViolation<Type>> => {
-        return basicRule({
-          ruleSatisfied: rule(x, options.threshold),
-          errorCode: 'MAX_LENGTH',
-          propertyValue: x,
-          additionalProperties: options,
-        })
-      }
+    /**
+     * Validation function
+     *
+     * @param x Input for validation
+     * @returns RuleViolation if the validation fails, or nothing if it succeeds
+     */
+    (x: Type): Maybe<RuleViolation<Type>> => {
+      return basicRule({
+        ruleSatisfied: rule(x, options.threshold),
+        errorCode: 'MAX_LENGTH',
+        propertyValue: x,
+        additionalProperties: options,
+      })
+    }
 }
