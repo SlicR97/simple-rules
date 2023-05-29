@@ -11,6 +11,7 @@ import { LessThanOrEqual } from './rules/less-than-or-equal.rule'
 import { GreaterThan } from './rules/greater-than.rule'
 import { GreaterThanOrEqual } from './rules/greater-than-or-equal.rule'
 import { Matches } from './rules/matches.rule'
+import { CreditCard } from './rules/credit-card.rule'
 
 export * from './rules'
 
@@ -19,6 +20,7 @@ export * from './types/rule-violation.type'
 export * from './types/validation-result.type'
 
 export * from './rules/basic.rule'
+export * from './rules/credit-card.rule'
 export * from './rules/email.rule'
 export * from './rules/equal.rule'
 export * from './rules/greater-than.rule'
@@ -39,6 +41,11 @@ export * from './rules/not-null-or-undefined.rule'
  * @borrows MinLength.validate as minLength
  */
 export const Rules = {
+  /**
+   * Shorthand for @see {@link CreditCard.validate}
+   */
+  creditCard: CreditCard.validate,
+
   /**
    * Shorthand for @see {@link Email.validate}
    */
