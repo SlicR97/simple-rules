@@ -7,6 +7,7 @@ import { NotEqual } from './rules/not-equal.rule'
 import { Equal } from './rules/equal.rule'
 import { Length } from './rules/length.rule'
 import { LessThan } from './rules/less-than.rule'
+import { LessThanOrEqual } from './rules/less-than-or-equal.rule'
 
 export * from './rules'
 
@@ -19,6 +20,7 @@ export * from './rules/email.rule'
 export * from './rules/equal.rule'
 export * from './rules/length.rule'
 export * from './rules/less-than.rule'
+export * from './rules/less-than-or-equal.rule'
 export * from './rules/max-length.rule'
 export * from './rules/min-length.rule'
 export * from './rules/not-empty.rule'
@@ -50,6 +52,11 @@ export const Rules = {
    * Shorthand for @see {@link LessThan.validate}
    */
   lessThan: LessThan.validate,
+
+  /**
+   * Shorthand for @see {@link LessThanOrEqual.validate}
+   */
+  lessThanOrEqual: LessThanOrEqual.validate,
 
   /**
    * Shorthand for @see {@link MaxLength.validate}
