@@ -13,6 +13,7 @@ import { GreaterThanOrEqual } from './rules/greater-than-or-equal.rule'
 import { Matches } from './rules/matches.rule'
 import { CreditCard } from './rules/credit-card.rule'
 import { Empty } from './rules/empty.rule'
+import { NullOrUndefined } from './rules/null-or-undefined.rule'
 
 export * from './rules'
 
@@ -36,6 +37,7 @@ export * from './rules/min-length.rule'
 export * from './rules/not-empty.rule'
 export * from './rules/not-equal.rule'
 export * from './rules/not-null-or-undefined.rule'
+export * from './rules/null-or-undefined.rule'
 
 /**
  * @namespace
@@ -117,4 +119,9 @@ export const Rules = {
    * Shorthand for @see {@link NotNullOrUndefined.validate}
    */
   notNullOrUndefined: NotNullOrUndefined.validate,
+
+  /**
+   * Shorthand for @see {@link NullOrUndefined.validate}
+   */
+  nullOrUndefined: NullOrUndefined.validate,
 }
