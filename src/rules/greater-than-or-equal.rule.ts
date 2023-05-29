@@ -1,4 +1,4 @@
-import { Maybe, RuleViolation, basicRule } from '../index'
+import { Maybe, RuleViolation, basicRule, LessThan } from '../index'
 
 /**
  * Validation for checking
@@ -21,9 +21,8 @@ export namespace GreaterThanOrEqual {
    * @param threshold Value to compare against
    * @returns True if the input value is greater than or equal to the other value
    */
-  export const rule = (x: number, threshold: number): boolean => {
-    return x >= threshold
-  }
+  export const rule = (x: number, threshold: number): boolean =>
+    !LessThan.rule(x, threshold)
 
   /**
    * Partially applied function.
