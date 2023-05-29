@@ -9,6 +9,7 @@ import { Length } from './rules/length.rule'
 import { LessThan } from './rules/less-than.rule'
 import { LessThanOrEqual } from './rules/less-than-or-equal.rule'
 import { GreaterThan } from './rules/greater-than.rule'
+import { GreaterThanOrEqual } from './rules/greater-than-or-equal.rule'
 
 export * from './rules'
 
@@ -20,6 +21,7 @@ export * from './rules/basic.rule'
 export * from './rules/email.rule'
 export * from './rules/equal.rule'
 export * from './rules/greater-than.rule'
+export * from './rules/greater-than-or-equal.rule'
 export * from './rules/length.rule'
 export * from './rules/less-than.rule'
 export * from './rules/less-than-or-equal.rule'
@@ -49,6 +51,11 @@ export const Rules = {
    * Shorthand for @see {@link GreaterThan.validate}
    */
   greaterThan: GreaterThan.validate,
+
+  /**
+   * Shorthand for @see {@link GreaterThanOrEqual.validate}
+   */
+  greaterThanOrEqual: GreaterThanOrEqual.validate,
 
   /**
    * Shorthand for @see {@link length.validate}
