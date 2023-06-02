@@ -21,6 +21,7 @@ import { Undefined } from './rules/undefined.rule'
 import { ExclusiveBetween } from './rules/exclusive-between.rule'
 import { InclusiveBetween } from './rules/inclusive-between.rule'
 import { Password } from './rules/password.rule'
+import { Equivalent } from './rules/equivalent.rule'
 
 export * from './rules'
 
@@ -33,6 +34,7 @@ export * from './rules/credit-card.rule'
 export * from './rules/email.rule'
 export * from './rules/empty.rule'
 export * from './rules/equal.rule'
+export * from './rules/equivalent.rule'
 export * from './rules/exclusive-between.rule'
 export * from './rules/greater-than.rule'
 export * from './rules/greater-than-or-equal.rule'
@@ -78,6 +80,11 @@ export const Rules = {
    * Shorthand for @see {@link Equal.validate}
    */
   equal: Equal.validate,
+
+  /**
+   * Shorthand for @see {@link Equivalent.validate}
+   */
+  equivalent: Equivalent.validate,
 
   /**
    * Shorthand for @see {@link ExclusiveBetween.validate}
