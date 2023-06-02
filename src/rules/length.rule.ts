@@ -44,9 +44,5 @@ export namespace Length {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: T): Maybe<RuleViolation<T>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options.length),
-        errorCode: 'LENGTH',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options.length), 'LENGTH', x)
 }

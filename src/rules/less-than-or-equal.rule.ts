@@ -39,9 +39,5 @@ export namespace LessThanOrEqual {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: number): Maybe<RuleViolation<number>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options.threshold),
-        errorCode: 'LESS_THAN_OR_EQUAL',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options.threshold), 'LESS_THAN_OR_EQUAL', x)
 }

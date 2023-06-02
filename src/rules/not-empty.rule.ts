@@ -23,11 +23,5 @@ export namespace NotEmpty {
    */
   export const validate = <Type extends string | any[]>(
     x: Type,
-  ): Maybe<RuleViolation<Type>> => {
-    return basicRule({
-      ruleSatisfied: rule(x),
-      errorCode: 'NOT_EMPTY',
-      propertyValue: x,
-    })
-  }
+  ): Maybe<RuleViolation<Type>> => basicRule(rule(x), 'NOT_EMPTY', x)
 }

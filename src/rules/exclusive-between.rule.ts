@@ -46,11 +46,10 @@ export namespace ExclusiveBetween {
      * @param x Input for validation
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
-    (x: number): Maybe<RuleViolation<number>> => {
-      return basicRule({
-        ruleSatisfied: rule(x, options.lowerBound, options.upperBound),
-        errorCode: 'EXCLUSIVE_BETWEEN',
-        propertyValue: x,
-      })
-    }
+    (x: number): Maybe<RuleViolation<number>> =>
+      basicRule(
+        rule(x, options.lowerBound, options.upperBound),
+        'EXCLUSIVE_BETWEEN',
+        x,
+      )
 }

@@ -25,8 +25,8 @@ export namespace RuleViolation {
    */
   export const create = <TProperty>(
     errorCodes: string[],
-    propertyValue: Maybe<TProperty> = Maybe.None(),
-    additionalProperties: Maybe<Record<string, unknown>> = Maybe.None(),
+    propertyValue: Maybe<TProperty> = undefined,
+    additionalProperties: Maybe<Record<string, unknown>> = undefined,
   ): RuleViolation<TProperty> => {
     if (additionalProperties)
       return {

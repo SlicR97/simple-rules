@@ -64,127 +64,127 @@ export * from './rules/undefined.rule'
  */
 export const Rules = {
   /**
-   * Shorthand for @see {@link CreditCard.validate}
+   * Shorthand for {@link CreditCard.validate}
    */
   creditCard: CreditCard.validate,
 
   /**
-   * Shorthand for @see {@link Email.validate}
+   * Shorthand for {@link Email.validate}
    */
   email: Email.validate,
 
   /**
-   * Shorthand for @see {@link NotEqual.validate}
+   * Shorthand for {@link NotEqual.validate}
    */
   empty: Empty.validate,
 
   /**
-   * Shorthand for @see {@link Equal.validate}
+   * Shorthand for {@link Equal.validate}
    */
   equal: Equal.validate,
 
   /**
-   * Shorthand for @see {@link Equivalent.validate}
+   * Shorthand for {@link Equivalent.validate}
    */
   equivalent: Equivalent.validate,
 
   /**
-   * Shorthand for @see {@link ExclusiveBetween.validate}
+   * Shorthand for {@link ExclusiveBetween.validate}
    */
   exclusiveBetween: ExclusiveBetween.validate,
 
   /**
-   * Shorthand for @see {@link GreaterThan.validate}
+   * Shorthand for {@link GreaterThan.validate}
    */
   greaterThan: GreaterThan.validate,
 
   /**
-   * Shorthand for @see {@link GreaterThanOrEqual.validate}
+   * Shorthand for {@link GreaterThanOrEqual.validate}
    */
   greaterThanOrEqual: GreaterThanOrEqual.validate,
 
   /**
-   * Shorthand for @see {@link InclusiveBetween.validate}
+   * Shorthand for {@link InclusiveBetween.validate}
    */
   inclusiveBetween: InclusiveBetween.validate,
 
   /**
-   * Shorthand for @see {@link length.validate}
+   * Shorthand for {@link length.validate}
    */
   length: Length.validate,
 
   /**
-   * Shorthand for @see {@link LessThan.validate}
+   * Shorthand for {@link LessThan.validate}
    */
   lessThan: LessThan.validate,
 
   /**
-   * Shorthand for @see {@link LessThanOrEqual.validate}
+   * Shorthand for {@link LessThanOrEqual.validate}
    */
   lessThanOrEqual: LessThanOrEqual.validate,
 
   /**
-   * Shorthand for @see {@link Matches.validate}
+   * Shorthand for {@link Matches.validate}
    */
   matches: Matches.validate,
 
   /**
-   * Shorthand for @see {@link MaxLength.validate}
+   * Shorthand for {@link MaxLength.validate}
    */
   maxLength: MaxLength.validate,
 
   /**
-   * Shorthand for @see {@link MinLength.validate}
+   * Shorthand for {@link MinLength.validate}
    */
   minLength: MinLength.validate,
 
   /**
-   * Shorthand for @see {@link NotEmpty.validate}
+   * Shorthand for {@link NotEmpty.validate}
    */
   notEmpty: NotEmpty.validate,
 
   /**
-   * Shorthand for @see {@link NotEqual.validate}
+   * Shorthand for {@link NotEqual.validate}
    */
   notEqual: NotEqual.validate,
 
   /**
-   * Shorthand for @see {@link NotEquivalent.validate}
+   * Shorthand for {@link NotEquivalent.validate}
    */
   notEquivalent: NotEquivalent.validate,
 
   /**
-   * Shorthand for @see {@link NotNull.validate}
+   * Shorthand for {@link NotNull.validate}
    */
   notNull: NotNull.validate,
 
   /**
-   * Shorthand for @see {@link NotUndefined.validate}
+   * Shorthand for {@link NotUndefined.validate}
    */
   notUndefined: NotUndefined.validate,
 
   /**
-   * Shorthand for @see {@link NotNullOrUndefined.validate}
+   * Shorthand for {@link NotNullOrUndefined.validate}
    */
   notNullOrUndefined: NotNullOrUndefined.validate,
 
   /**
-   * Shorthand for @see {@link Null.validate}
+   * Shorthand for {@link Null.validate}
    */
   null: Null.validate,
 
   /**
-   * Shorthand for @see {@link NullOrUndefined.validate}
+   * Shorthand for {@link NullOrUndefined.validate}
    */
   nullOrUndefined: NullOrUndefined.validate,
 
   /**
-   * Shorthand for @see {@link Password.validate}
+   * Shorthand for {@link Password.validate}
    */
   password: Password.validate,
 
   /**
-   * Shorthand for @see {@link Undefined.validate}
+   * Shorthand for {@link Undefined.validate}
    */
   undefined: Undefined.validate,
 }

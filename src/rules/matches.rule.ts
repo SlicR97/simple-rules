@@ -41,9 +41,5 @@ export namespace Matches {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: string): Maybe<RuleViolation<string>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options.regex),
-        errorCode: 'MATCHES',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options.regex), 'MATCHES', x)
 }
