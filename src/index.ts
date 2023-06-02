@@ -17,6 +17,7 @@ import { NullOrUndefined } from './rules/null-or-undefined.rule'
 import { NotNull } from './rules/not-null.rule'
 import { NotUndefined } from './rules/not-undefined.rule'
 import { Null } from './rules/null.rule'
+import { Undefined } from './rules/undefined.rule'
 
 export * from './rules'
 
@@ -44,6 +45,7 @@ export * from './rules/not-null-or-undefined.rule'
 export * from './rules/not-undefined.rule'
 export * from './rules/null.rule'
 export * from './rules/null-or-undefined.rule'
+export * from './rules/undefined.rule'
 
 /**
  * @namespace
@@ -145,4 +147,9 @@ export const Rules = {
    * Shorthand for @see {@link NullOrUndefined.validate}
    */
   nullOrUndefined: NullOrUndefined.validate,
+
+  /**
+   * Shorthand for @see {@link Undefined.validate}
+   */
+  undefined: Undefined.validate,
 }
