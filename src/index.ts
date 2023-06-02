@@ -19,6 +19,7 @@ import { NotUndefined } from './rules/not-undefined.rule'
 import { Null } from './rules/null.rule'
 import { Undefined } from './rules/undefined.rule'
 import { ExclusiveBetween } from './rules/exclusive-between.rule'
+import { InclusiveBetween } from './rules/inclusive-between.rule'
 
 export * from './rules'
 
@@ -34,6 +35,7 @@ export * from './rules/equal.rule'
 export * from './rules/exclusive-between.rule'
 export * from './rules/greater-than.rule'
 export * from './rules/greater-than-or-equal.rule'
+export * from './rules/inclusive-between.rule'
 export * from './rules/length.rule'
 export * from './rules/less-than.rule'
 export * from './rules/less-than-or-equal.rule'
@@ -89,6 +91,11 @@ export const Rules = {
    * Shorthand for @see {@link GreaterThanOrEqual.validate}
    */
   greaterThanOrEqual: GreaterThanOrEqual.validate,
+
+  /**
+   * Shorthand for @see {@link InclusiveBetween.validate}
+   */
+  inclusiveBetween: InclusiveBetween.validate,
 
   /**
    * Shorthand for @see {@link length.validate}
