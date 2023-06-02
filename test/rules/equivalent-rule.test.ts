@@ -5,6 +5,14 @@ import { Equivalent } from '../../src'
 
 describe('equivalent-rule.ts', () => {
   describe('#rule()', () => {
+    it('returns true if both values are null', () => {
+      expect(Equivalent.rule(null, null)).to.be.true
+    })
+
+    it('returns false if one value is null', () => {
+      expect(Equivalent.rule(null, 1)).to.be.false
+    })
+
     it('returns true when the input is a number and equivalent to the other value', () => {
       expect(Equivalent.rule(1, 1)).to.be.true
     })

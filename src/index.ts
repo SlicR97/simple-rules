@@ -22,6 +22,7 @@ import { ExclusiveBetween } from './rules/exclusive-between.rule'
 import { InclusiveBetween } from './rules/inclusive-between.rule'
 import { Password } from './rules/password.rule'
 import { Equivalent } from './rules/equivalent.rule'
+import { NotEquivalent } from './rules/not-equivalent.rule'
 
 export * from './rules'
 
@@ -47,6 +48,7 @@ export * from './rules/max-length.rule'
 export * from './rules/min-length.rule'
 export * from './rules/not-empty.rule'
 export * from './rules/not-equal.rule'
+export * from './rules/not-equivalent.rule'
 export * from './rules/not-null.rule'
 export * from './rules/not-null-or-undefined.rule'
 export * from './rules/not-undefined.rule'
@@ -145,6 +147,11 @@ export const Rules = {
    * Shorthand for @see {@link NotEqual.validate}
    */
   notEqual: NotEqual.validate,
+
+  /**
+   * Shorthand for @see {@link NotEquivalent.validate}
+   */
+  notEquivalent: NotEquivalent.validate,
 
   /**
    * Shorthand for @see {@link NotNull.validate}

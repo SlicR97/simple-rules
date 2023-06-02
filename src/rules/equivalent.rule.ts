@@ -39,7 +39,7 @@ export namespace Equivalent {
   /**
    * Options for configuring the Equivalent rule
    *
-   * @param threshold Value to compare against
+   * @param other Value to compare against
    */
   export type Options<T> = {
     other: T
@@ -51,7 +51,7 @@ export namespace Equivalent {
    *
    * @param x Input to be checked
    * @param other Value to compare against
-   * @returns True if the input value equivalent to the other value
+   * @returns True if the input value is equivalent to the other value
    */
   export const rule = <T>(x: T, other: T): boolean => {
     return deepEqual(x, other)
