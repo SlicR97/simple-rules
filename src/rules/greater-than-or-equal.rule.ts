@@ -39,9 +39,5 @@ export namespace GreaterThanOrEqual {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: number): Maybe<RuleViolation<number>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options.threshold),
-        errorCode: 'GREATER_THAN_OR_EQUAL',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options.threshold), 'GREATER_THAN_OR_EQUAL', x)
 }

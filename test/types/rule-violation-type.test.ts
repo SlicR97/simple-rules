@@ -1,4 +1,4 @@
-import { Maybe, RuleViolation } from '../../src'
+import { RuleViolation } from '../../src'
 import { expect } from 'chai'
 
 describe('rule-violation.type.ts', () => {
@@ -13,7 +13,7 @@ describe('rule-violation.type.ts', () => {
     it("does not have a field 'propertyValue' when the parameter 'propertyValue' is undefined", () => {
       expect(RuleViolation.create(['ERROR'])).to.eql({
         errorCodes: ['ERROR'],
-        propertyValue: Maybe.None(),
+        propertyValue: undefined,
       })
     })
 

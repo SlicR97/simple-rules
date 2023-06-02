@@ -18,11 +18,11 @@ describe('credit-card.rule.ts', () => {
 
   describe('#validate()', () => {
     it('returns nothing on a valid credit card number', () => {
-      expect(CreditCard.validate()('4273 1490 1979 9094')).to.be.undefined
+      expect(CreditCard.validate('4273 1490 1979 9094')).to.be.undefined
     })
 
     it('returns a RuleViolation on an invalid credit card number', () => {
-      expect(CreditCard.validate()('4111 1111 1111 1112')).to.eql({
+      expect(CreditCard.validate('4111 1111 1111 1112')).to.eql({
         errorCodes: ['CREDIT_CARD'],
         propertyValue: '4111 1111 1111 1112',
       })

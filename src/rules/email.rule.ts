@@ -18,23 +18,11 @@ export namespace Email {
   }
 
   /**
-   * Partially applied function.
+   * Validation function
    *
-   * @returns a function that takes a value to validate
+   * @param x Input for validation
+   * @returns RuleViolation if the validation fails, or nothing if it succeeds
    */
-  export const validate =
-    () =>
-    /**
-     * Validation function
-     *
-     * @param x Input for validation
-     * @returns RuleViolation if the validation fails, or nothing if it succeeds
-     */
-    (x: string): Maybe<RuleViolation<string>> => {
-      return basicRule({
-        ruleSatisfied: rule(x),
-        errorCode: 'EMAIL',
-        propertyValue: x,
-      })
-    }
+  export const validate = (x: string): Maybe<RuleViolation<string>> =>
+    basicRule(rule(x), 'EMAIL', x)
 }

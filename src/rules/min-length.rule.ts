@@ -39,12 +39,6 @@ export namespace MinLength {
      * @param x Input for validation
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
-    (x: Type): Maybe<RuleViolation<Type>> => {
-      return basicRule({
-        ruleSatisfied: rule(x, options.threshold),
-        errorCode: 'MIN_LENGTH',
-        propertyValue: x,
-        additionalProperties: options,
-      })
-    }
+    (x: Type): Maybe<RuleViolation<Type>> =>
+      basicRule(rule(x, options.threshold), 'MIN_LENGTH', x, options)
 }

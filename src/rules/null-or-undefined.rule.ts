@@ -21,11 +21,6 @@ export namespace NullOrUndefined {
    */
   export const validate = <T>(
     x: T | null | undefined,
-  ): Maybe<RuleViolation<T | null | undefined>> => {
-    return basicRule({
-      ruleSatisfied: rule(x),
-      errorCode: 'NULL_OR_UNDEFINED',
-      propertyValue: x,
-    })
-  }
+  ): Maybe<RuleViolation<T | null | undefined>> =>
+    basicRule(rule(x), 'NULL_OR_UNDEFINED', x)
 }

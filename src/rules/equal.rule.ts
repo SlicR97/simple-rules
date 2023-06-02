@@ -40,9 +40,5 @@ export namespace Equal {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: T): Maybe<RuleViolation<T>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options.other),
-        errorCode: 'EQUAL',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options.other), 'EQUAL', x)
 }

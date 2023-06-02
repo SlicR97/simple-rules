@@ -23,11 +23,6 @@ export namespace NotUndefined {
    */
   export const validate = <T>(
     x: T | undefined,
-  ): Maybe<RuleViolation<T | undefined>> => {
-    return basicRule({
-      ruleSatisfied: rule(x),
-      errorCode: 'NOT_UNDEFINED',
-      propertyValue: x,
-    })
-  }
+  ): Maybe<RuleViolation<T | undefined>> =>
+    basicRule(rule(x), 'NOT_UNDEFINED', x)
 }

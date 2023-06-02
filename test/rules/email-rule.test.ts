@@ -14,11 +14,11 @@ describe('email.rule.ts', () => {
 
   describe('#validate()', () => {
     it('returns nothing on a valid email address', () => {
-      expect(Email.validate()('abc@dev.de')).to.be.undefined
+      expect(Email.validate('abc@dev.de')).to.be.undefined
     })
 
     it('returns a RuleViolation on an invalid email address', () => {
-      expect(Email.validate()('abc@dev')).to.eql({
+      expect(Email.validate('abc@dev')).to.eql({
         errorCodes: ['EMAIL'],
         propertyValue: 'abc@dev',
       })

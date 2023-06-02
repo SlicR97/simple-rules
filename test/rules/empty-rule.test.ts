@@ -1,4 +1,4 @@
-import { Empty, Maybe } from '../../src'
+import { Empty } from '../../src'
 import { expect } from 'chai'
 
 describe('empty.rule.ts', () => {
@@ -29,7 +29,7 @@ describe('empty.rule.ts', () => {
     })
 
     it('returns nothing when the input is empty', () => {
-      expect(Empty.validate('')).to.eql(Maybe.None())
+      expect(Empty.validate('')).to.eql(undefined)
     })
   })
 })

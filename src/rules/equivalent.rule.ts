@@ -1,4 +1,5 @@
 import { Maybe, RuleViolation, basicRule } from '../index'
+import deepEqual from '../internal/functions/deep-equality.function'
 
 /**
  * Validation for checking
@@ -6,36 +7,6 @@ import { Maybe, RuleViolation, basicRule } from '../index'
  * to the value passed in the configuration
  */
 export namespace Equivalent {
-  /**
-   * Checks if two values are equivalent
-   *
-   * @param a
-   * @param b
-   */
-  const deepEqual = <T>(a: T, b: T): boolean => {
-    if (a === null && b === null) return true
-
-    if (a === null || b === null) return false
-
-    if (Array.isArray(a)) {
-      return (
-        a.length === (b as unknown[]).length &&
-        a.every((x, i) => deepEqual(x, (b as unknown[])[i]))
-      )
-    }
-
-    if (typeof a === 'object') {
-      return Object.keys(a).every((key) =>
-        deepEqual(
-          (a as Record<string, unknown>)[key],
-          (b as Record<string, unknown>)[key],
-        ),
-      )
-    }
-
-    return a === b
-  }
-
   /**
    * Options for configuring the Equivalent rule
    *
@@ -72,9 +43,5 @@ export namespace Equivalent {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: T): Maybe<RuleViolation<T>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options.other),
-        errorCode: 'EQUIVALENT',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options.other), 'EQUIVALENT', x)
 }

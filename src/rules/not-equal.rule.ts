@@ -39,11 +39,6 @@ export namespace NotEqual {
      * @param x Input for validation
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
-    (x: T): Maybe<RuleViolation<T>> => {
-      return basicRule({
-        ruleSatisfied: rule(x, options.other),
-        errorCode: 'NOT_EQUAL',
-        propertyValue: x,
-      })
-    }
+    (x: T): Maybe<RuleViolation<T>> =>
+      basicRule(rule(x, options.other), 'NOT_EQUAL', x)
 }

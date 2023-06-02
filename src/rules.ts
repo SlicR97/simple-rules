@@ -4,7 +4,7 @@ import { Maybe, RuleViolation, ValidationResult } from './index'
  * Function that checks a normal rule and
  * maybe returns a RuleViolation
  *
- * @param t The property to validata
+ * @param t The property to validate
  */
 type NormalRuleFunction<Type, TProperty extends keyof Type> = (
   t: Type[TProperty],
@@ -113,12 +113,18 @@ const isCodependentRuleFunction = <Type, TProperty extends keyof Type>(
  * and applies them against a given object
  *
  * @param rules The rules to be applied
- * @param t The object to apply the rules to
  *
  * @returns A ValidationResult of the given type
  */
 export const rules =
   <Type>(...rules: Rule<Type, keyof Type>[]) =>
+  /**
+   * Applies the given rules to the given object
+   *
+   * @param t The object to apply the rules to
+   *
+   * @returns A ValidationResult of the given type
+   */
   (t: Type): ValidationResult<Type> =>
     rules.reduce((res, rule) => {
       const [key, fn, errorCode] = rule

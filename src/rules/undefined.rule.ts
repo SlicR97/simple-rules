@@ -23,11 +23,5 @@ export namespace Undefined {
    */
   export const validate = <T>(
     x: T | undefined,
-  ): Maybe<RuleViolation<T | undefined>> => {
-    return basicRule({
-      ruleSatisfied: rule(x),
-      errorCode: 'UNDEFINED',
-      propertyValue: x,
-    })
-  }
+  ): Maybe<RuleViolation<T | undefined>> => basicRule(rule(x), 'UNDEFINED', x)
 }

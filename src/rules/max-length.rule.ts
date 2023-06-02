@@ -40,11 +40,6 @@ export namespace MaxLength {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: Type): Maybe<RuleViolation<Type>> => {
-      return basicRule({
-        ruleSatisfied: rule(x, options.threshold),
-        errorCode: 'MAX_LENGTH',
-        propertyValue: x,
-        additionalProperties: options,
-      })
+      return basicRule(rule(x, options.threshold), 'MAX_LENGTH', x, options)
     }
 }

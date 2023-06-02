@@ -21,11 +21,6 @@ export namespace Null {
    * @param x input for validation
    * @returns RuleViolation if the validation fails, or nothing if it succeeds
    */
-  export const validate = <T>(x: T | null): Maybe<RuleViolation<T | null>> => {
-    return basicRule({
-      ruleSatisfied: rule(x),
-      errorCode: 'NULL',
-      propertyValue: x,
-    })
-  }
+  export const validate = <T>(x: T | null): Maybe<RuleViolation<T | null>> =>
+    basicRule(rule(x), 'NULL', x)
 }

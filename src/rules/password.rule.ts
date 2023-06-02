@@ -72,9 +72,5 @@ export namespace Password {
      * @returns RuleViolation if the validation fails, or nothing if it succeeds
      */
     (x: string): Maybe<RuleViolation<string>> =>
-      basicRule({
-        ruleSatisfied: rule(x, options),
-        errorCode: 'PASSWORD',
-        propertyValue: x,
-      })
+      basicRule(rule(x, options), 'PASSWORD', x)
 }
