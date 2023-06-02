@@ -128,5 +128,25 @@ describe('rules.ts', () => {
         },
       })
     })
+
+    it('combines multiple errors on the same property', () => {
+      expect(
+        rules<TestType>(
+          ['str', Rules.minLength({ threshold: 5 })],
+          ['str', Rules.maxLength({ threshold: 2 })],
+        )({
+          str: 'test',
+          arr: [],
+        }),
+      ).to.eql({
+        str: {
+          errorCodes: ['MIN_LENGTH', 'MAX_LENGTH'],
+          propertyValue: 'test',
+          additionalProperties: {
+            threshold: 2,
+          },
+        },
+      })
+    })
   })
 })
