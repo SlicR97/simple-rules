@@ -20,6 +20,7 @@ import { Null } from './rules/null.rule'
 import { Undefined } from './rules/undefined.rule'
 import { ExclusiveBetween } from './rules/exclusive-between.rule'
 import { InclusiveBetween } from './rules/inclusive-between.rule'
+import { Password } from './rules/password.rule'
 
 export * from './rules'
 
@@ -49,6 +50,7 @@ export * from './rules/not-null-or-undefined.rule'
 export * from './rules/not-undefined.rule'
 export * from './rules/null.rule'
 export * from './rules/null-or-undefined.rule'
+export * from './rules/password.rule'
 export * from './rules/undefined.rule'
 
 /**
@@ -161,6 +163,11 @@ export const Rules = {
    * Shorthand for @see {@link NullOrUndefined.validate}
    */
   nullOrUndefined: NullOrUndefined.validate,
+
+  /**
+   * Shorthand for @see {@link Password.validate}
+   */
+  password: Password.validate,
 
   /**
    * Shorthand for @see {@link Undefined.validate}
