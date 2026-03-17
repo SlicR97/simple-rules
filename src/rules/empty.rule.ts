@@ -19,7 +19,7 @@ export namespace Empty {
    * @param x input for validation
    * @returns RuleViolation if the validation fails, or nothing if it succeeds
    */
-  export const validate = <Type extends string | any[]>(
+  export const validate = <Type extends string | unknown[]>(
     x: Type,
   ): Maybe<RuleViolation<Type>> => basicRule(rule(x), 'EMPTY', x)
 }

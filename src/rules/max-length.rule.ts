@@ -32,7 +32,7 @@ export namespace MaxLength {
    * @returns a function that takes a value to validate
    */
   export const validate =
-    <Type extends string | any[]>(options: Options) =>
+    <Type extends string | unknown[]>(options: Options) =>
     /**
      * Validation function
      *
